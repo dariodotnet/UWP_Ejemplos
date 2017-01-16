@@ -15,23 +15,15 @@ namespace AppMVVM.Base
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private Frame _frame;
-        public Frame Frame
-        {
-            get { return _frame; }
-            set
-            {
-                _frame = value;
-                RaisePropertyChanged();
-            }
-        }
+        private Frame _appFrame;
+        public Frame AppFrame => _appFrame;
 
         public abstract Task OnNavigatedTo(NavigationEventArgs args);
         public abstract Task OnNavigatedFrom(NavigationEventArgs args);
 
         internal void SetAppFrame(Frame viewFrame)
         {
-            _frame = viewFrame;
+            _appFrame = viewFrame;
         }
     }
 }
