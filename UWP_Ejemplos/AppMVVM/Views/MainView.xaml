@@ -8,11 +8,14 @@
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="{Binding HolaMundo}"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="36"
-                   TextWrapping="Wrap"></TextBlock>
+    <Grid Background="{Binding AppBackground}">
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock Text="{Binding HolaMundo}"
+                       FontSize="36"
+                       TextWrapping="Wrap" />
+            <Button Content="Cambia el color"
+                    Command="{Binding ChangeColorCommand}"/>
+        </StackPanel>
     </Grid>
 </base:PageBase>

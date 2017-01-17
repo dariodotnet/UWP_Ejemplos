@@ -95,6 +95,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Base\DelegateCommand.cs" />
+    <Compile Include="Base\DelegateCommandAsync.cs" />
     <Compile Include="Base\PageBase.cs" />
     <Compile Include="Base\ViewModelBase.cs" />
     <Compile Include="Base\ViewModelLocator.cs" />
