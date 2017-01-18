@@ -12,8 +12,10 @@ namespace AppMVVM.Base
             _container = new UnityContainer();
 
             _container.RegisterType<MainViewModel>();
+            _container.RegisterType<SecondViewModel>();
         }
 
         public MainViewModel MainViewModel => _container.Resolve<MainViewModel>();
+        public SecondViewModel SecondViewModel => _container.Resolve<SecondViewModel>();
     }
 }

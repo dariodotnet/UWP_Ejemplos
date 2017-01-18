@@ -15,7 +15,14 @@
                        FontSize="36"
                        TextWrapping="Wrap" />
             <Button Content="Cambia el color"
+                    HorizontalAlignment="Stretch"
+                    Margin="0 10"
                     Command="{Binding ChangeColorCommand}"/>
+            <Button Content="Navegar a SecondView"
+                    HorizontalAlignment="Stretch"
+                    Margin="0 10"
+                    Command="{Binding NavigateToSecondViewCommand}"/>
+
         </StackPanel>
     </Grid>
 </base:PageBase>

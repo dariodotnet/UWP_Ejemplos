@@ -1,4 +1,5 @@
 ﻿using AppMVVM.Base;
+using AppMVVM.Views;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI;
@@ -36,10 +37,26 @@ namespace AppMVVM.ViewModels
         {
             get { return changeColorCommand = changeColorCommand ?? new DelegateCommand(ChangeColorExecute); }
         }
-
         private void ChangeColorExecute()
         {
             AppBackground = new SolidColorBrush(Colors.Pink);
+        }
+
+        private ICommand navigateToSecondViewCommand;
+
+        public ICommand NavigateToSecondViewCommand
+        {
+            get
+            {
+                return
+                    navigateToSecondViewCommand =
+                        navigateToSecondViewCommand ?? new DelegateCommand(NavigateToSecondViewExecute);
+            }
+        }
+
+        private void NavigateToSecondViewExecute()
+        {
+            AppFrame.Navigate(typeof(SecondView));
         }
 
         public override Task OnNavigatedTo(NavigationEventArgs args)
