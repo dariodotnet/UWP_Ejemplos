@@ -8,6 +8,20 @@ namespace AppMVVM.Base
     {
         private ViewModelBase _viewModel;
 
+        private Frame _splitViewFrame;
+        public Frame SplitViewFrame
+        {
+            get { return _splitViewFrame; }
+            set
+            {
+                _splitViewFrame = value;
+                if (_viewModel == null)
+                    _viewModel = (ViewModelBase)this.DataContext;
+
+                _viewModel.SetSplitViewFrame(_splitViewFrame);
+            }
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
