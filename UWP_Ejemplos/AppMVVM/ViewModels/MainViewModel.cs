@@ -2,67 +2,54 @@
 using AppMVVM.Views;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.UI;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace AppMVVM.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private string _holaMundo;
-        public string HolaMundo
+        private bool _isMenuOpen;
+        public bool IsMenuOpen
         {
-            get { return _holaMundo; }
+            get { return _isMenuOpen; }
             set
             {
-                _holaMundo = value;
+                _isMenuOpen = value;
                 RaisePropertyChanged();
             }
         }
 
-        private SolidColorBrush _appBackground;
-        public SolidColorBrush AppBackground
+        private ICommand _openCloseMenuCommand;
+        public ICommand OpenCloseMenuCommand
         {
-            get { return _appBackground; }
-            set
+            get { return _openCloseMenuCommand = _openCloseMenuCommand ?? new DelegateCommand(OpenCloseMenuExecute); }
+        }
+        private void OpenCloseMenuExecute()
+        {
+            IsMenuOpen = !IsMenuOpen;
+        }
+
+        private DelegateCommand<string> _navigationCommand;
+        public DelegateCommand<string> NavigationCommand
+        {
+            get { return _navigationCommand = _navigationCommand ?? new DelegateCommand<string>(NavigationExecute); }
+        }
+        private void NavigationExecute(string viewFrame)
+        {
+            switch (viewFrame)
             {
-                _appBackground = value;
-                RaisePropertyChanged();
+                case "SecondView":
+                    SplitViewFrame.Navigate(typeof(SecondView));
+                    break;
+                case "OtherView":
+                    SplitViewFrame.Navigate(typeof(OtherView));
+                    break;
             }
-        }
-
-        private ICommand changeColorCommand;
-        public ICommand ChangeColorCommand
-        {
-            get { return changeColorCommand = changeColorCommand ?? new DelegateCommand(ChangeColorExecute); }
-        }
-        private void ChangeColorExecute()
-        {
-            AppBackground = new SolidColorBrush(Colors.Pink);
-        }
-
-        private ICommand navigateToSecondViewCommand;
-
-        public ICommand NavigateToSecondViewCommand
-        {
-            get
-            {
-                return
-                    navigateToSecondViewCommand =
-                        navigateToSecondViewCommand ?? new DelegateCommand(NavigateToSecondViewExecute);
-            }
-        }
-
-        private void NavigateToSecondViewExecute()
-        {
-            AppFrame.Navigate(typeof(SecondView));
+            IsMenuOpen = false;
         }
 
         public override Task OnNavigatedTo(NavigationEventArgs args)
         {
-            HolaMundo = "Hola mundo desde el ViewModel!!!";
-            AppBackground = new SolidColorBrush(Colors.Azure);
             return null;
         }
 

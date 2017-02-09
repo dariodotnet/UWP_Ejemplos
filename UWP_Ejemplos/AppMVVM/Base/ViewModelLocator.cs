@@ -13,9 +13,11 @@ namespace AppMVVM.Base
 
             _container.RegisterType<MainViewModel>();
             _container.RegisterType<SecondViewModel>();
+            _container.RegisterType<OtherViewModel>();
         }
 
         public MainViewModel MainViewModel => _container.Resolve<MainViewModel>();
         public SecondViewModel SecondViewModel => _container.Resolve<SecondViewModel>();
+        public OtherViewModel OtherViewModel => _container.Resolve<OtherViewModel>();
     }
 }
